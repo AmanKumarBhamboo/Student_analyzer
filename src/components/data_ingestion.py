@@ -5,6 +5,10 @@ from src.exception import CustomException
 from src.logger import logging
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
+@dataclass
+class DataIngestionConfig:
 
 @dataclass
 class DataIngestionConfig:
@@ -39,4 +43,9 @@ class DataIngestion:
 
 if __name__ == "__main__":
     obj = DataIngestion()
-    obj.data_ingestion_start('dataset/StudentPerformanceFactors.csv')
+    train_data_path, test_data_path = obj.data_ingestion_start('dataset/StudentPerformanceFactors.csv')
+
+
+    data_transformation = DataTransformation()
+    train_arr,test_arr = DataTransformation.initiate_data_transformation(train_path=train_data_path,test_path=test_data_path,target_column="math_score")
+    print("Transformation Completed Successfully!")
