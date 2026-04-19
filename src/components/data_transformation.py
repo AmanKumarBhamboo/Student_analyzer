@@ -83,12 +83,13 @@ class DataTransformation:
                 file_path=self.data_transformation_config.preprocessor_obj_file_path,
                 obj=preprocessing_obj
             )
-
+            logging.info('Data transformation has been completed')
             return (
                 train_arr,
                 test_arr,
                 self.data_transformation_config.preprocessor_obj_file_path
             )
+
 
         except Exception as e:
             raise CustomException(e, sys)
